@@ -1,4 +1,4 @@
-module adityaeka26/go-pkg
+module github.com/adityaeka26/go-pkg
 
 go 1.22.5
 

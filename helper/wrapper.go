@@ -6,7 +6,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	pkgError "adityaeka26/go-pkg/error"
+	pkgError "github.com/adityaeka26/go-pkg/error"
 )
 
 func init() {}

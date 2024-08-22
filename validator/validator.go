@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	pkgError "adityaeka26/go-pkg/error"
+	pkgError "github.com/adityaeka26/go-pkg/error"
 
 	"github.com/go-playground/validator/v10"
 )
