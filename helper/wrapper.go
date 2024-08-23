@@ -56,8 +56,8 @@ func RespError(c *fiber.Ctx, err error) error {
 type MetaData struct {
 	Page      int64 `json:"page"`
 	Count     int64 `json:"count"`
-	TotalPage int64 `json:"totalPage"`
-	TotalData int64 `json:"totalData"`
+	TotalPage int64 `json:"total_page"`
+	TotalData int64 `json:"total_data"`
 }
 
 func GenerateMetaData(totalData, count int64, page, limit int64) MetaData {
