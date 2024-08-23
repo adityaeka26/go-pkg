@@ -1,6 +1,7 @@
 package helper
 
 import (
+	"math"
 	"net/http"
 	"time"
 
@@ -59,5 +60,41 @@ func RespError(c *fiber.Ctx, err error) error {
 		Data:    nil,
 		Code:    getErrorStatusCode(err),
 		Success: false,
+	})
+}
+
+type MetaData struct {
+	Page      int64 `json:"page"`
+	Count     int64 `json:"count"`
+	TotalPage int64 `json:"totalPage"`
+	TotalData int64 `json:"totalData"`
+}
+
+func GenerateMetaData(totalData, count int64, page, limit int64) MetaData {
+	metaData := MetaData{
+		Page:      page,
+		Count:     count,
+		TotalPage: int64(math.Ceil(float64(totalData) / float64(limit))),
+		TotalData: totalData,
+	}
+
+	return metaData
+}
+
+type paginationResponse struct {
+	Success bool     `json:"success"`
+	Code    int      `json:"code"`
+	Message string   `json:"message"`
+	Data    any      `json:"data"`
+	Meta    MetaData `json:"meta"`
+}
+
+func RespPagination(c *fiber.Ctx, data any, metadata MetaData, message string) error {
+	return c.Status(http.StatusOK).JSON(paginationResponse{
+		Message: message,
+		Meta:    metadata,
+		Data:    data,
+		Code:    http.StatusOK,
+		Success: true,
 	})
 }
