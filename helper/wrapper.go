@@ -3,7 +3,6 @@ package helper
 import (
 	"math"
 	"net/http"
-	"time"
 
 	"github.com/gofiber/fiber/v2"
 
@@ -34,15 +33,6 @@ func getErrorStatusCode(err error) int {
 	}
 
 	return http.StatusInternalServerError
-}
-
-type Meta struct {
-	Method        string    `json:"method"`
-	Url           string    `json:"url"`
-	Code          string    `json:"code"`
-	ContentLength int64     `json:"content_length"`
-	Date          time.Time `json:"date"`
-	Ip            string    `json:"ip"`
 }
 
 func RespSuccess(c *fiber.Ctx, data any, message string) error {
@@ -85,8 +75,8 @@ type paginationResponse struct {
 	Success bool     `json:"success"`
 	Code    int      `json:"code"`
 	Message string   `json:"message"`
-	Data    any      `json:"data"`
 	Meta    MetaData `json:"meta"`
+	Data    any      `json:"data"`
 }
 
 func RespPagination(c *fiber.Ctx, data any, metadata MetaData, message string) error {
