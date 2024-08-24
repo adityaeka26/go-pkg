@@ -4,7 +4,6 @@ import (
 	"context"
 	"strings"
 
-	"github.com/pkg/errors"
 	"github.com/segmentio/kafka-go"
 	"github.com/segmentio/kafka-go/sasl/scram"
 )
@@ -24,7 +23,7 @@ func NewKafkaConsumer(sasl bool, hosts, username, password string) (*KafkaConsum
 	if sasl {
 		mechanism, err := scram.Mechanism(scram.SHA512, username, password)
 		if err != nil {
-			return nil, errors.WithStack(err)
+			return nil, err
 		}
 
 		config.Dialer = &kafka.Dialer{SASLMechanism: mechanism}

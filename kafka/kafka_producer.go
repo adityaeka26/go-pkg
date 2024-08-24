@@ -27,7 +27,7 @@ func NewKafkaProducer(sasl bool, hosts, username, password string) (*KafkaProduc
 	if sasl {
 		mechanism, err := scram.Mechanism(scram.SHA512, username, password)
 		if err != nil {
-			return nil, errors.WithStack(err)
+			return nil, err
 		}
 
 		config.Dialer = &kafka.Dialer{SASLMechanism: mechanism}
