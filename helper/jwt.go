@@ -10,7 +10,6 @@ import (
 func GenerateToken(privateKey string, claims jwt.MapClaims) (*string, error) {
 	claims["iat"] = time.Now().Unix()
 	claims["exp"] = time.Now().Add(1 * 24 * time.Hour).Unix()
-	claims["iss"] = "adityaeka26"
 
 	privateKey = strings.ReplaceAll(privateKey, "\\n", "\n")
 
